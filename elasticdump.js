@@ -38,7 +38,7 @@ class ElasticDump extends TransportProcessor {
           return doc => {
             const filePath = transform.slice(1).split('?')
             const parsed = url.pathToFileURL(filePath[0])
-            return require(parsed.pathname)(doc, ElasticDump.getParams(filePath[1]))
+            return global.require(parsed.pathname)(doc, ElasticDump.getParams(filePath[1]))
           }
         } else {
           const modificationScriptText = `(function(doc) { ${transform} })`
